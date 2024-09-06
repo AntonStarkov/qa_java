@@ -12,25 +12,21 @@ public class Lion {
         } else if ("Самка".equals(sex)) {
             hasMane = false;
         } else {
-            throw new Exception ("Используйте допустимые значения пола животного - самей или самка");
+            throw new Exception("Используйте допустимые значения пола животного - самей или самка");
         }
     }
-    public Lion(Predator predator) throws Exception {
+    public Lion(Predator predator) throws NullPointerException {
         this.predator = predator;
     }
 
     public int getKittens() {
-        return predator.getKittens(1);
+        return predator.getKittens();
     }
-    public int getKittens(int kittensCount) {
-        return predator.getKittens(kittensCount);
-    }
-
     public boolean doesHaveMane() {
         return hasMane;
     }
 
     public List<String> getFood() throws Exception {
-        return predator.getFood();
+        return predator.getFood("Хищник");
     }
 }

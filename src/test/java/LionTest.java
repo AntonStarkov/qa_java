@@ -29,17 +29,28 @@ public class LionTest {
     @Mock
     Predator predator;
     @Test
-    public void lionsMethodsTest() throws Exception {
+    public void lionsGetFoodMethodTest() throws Exception {
         Lion lion = new Lion(predator);
         lion.getFood();
-        Mockito.verify(predator).getFood();
+        Mockito.verify(predator).getFood("Хищник");
+    }
+    @Test
+    public void lionsGetKittensMethodTest() {
+        Lion lion = new Lion(predator);
         lion.getKittens();
-        Mockito.verify(predator).getKittens(1);
-        lion.getKittens(5);
-        Mockito.verify(predator).getKittens(5);
+        Mockito.verify(predator).getKittens();
+    }
+    @Test
+    public void lionsDoesHaveManeMethodTest() throws Exception {
         Assert.assertEquals(expectedMane, new Lion(expectedSex).doesHaveMane());
+    }
+    @Test
+    public void lionsThrowExceptionTest() {
+        Assert.assertThrows(Exception.class, () -> {new Lion("");});
+    }
+    @Test
+    public void lionsThrowExceptionTextTest() {
         Assert.assertEquals("Используйте допустимые значения пола животного - самей или самка", (Assert.assertThrows(Exception.class, () -> {
             new Lion("");}).getMessage()));
-        Assert.assertThrows(Exception.class, () -> {new Lion("");});
     }
 }
