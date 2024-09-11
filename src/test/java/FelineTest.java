@@ -19,10 +19,6 @@ public class FelineTest {
         Assert.assertEquals(feline.getFood("Хищник"), feline.eatMeat());
     }
     @Test
-    public void felinesGetFoodMethodTest() throws Exception {
-        Assert.assertEquals(null, feline.getFood("Хищник"));
-    }
-    @Test
     public void felinesGetKittensMethodWithParameterTest() throws Exception {
         Assert.assertEquals(4, feline.getKittens(4));
     }

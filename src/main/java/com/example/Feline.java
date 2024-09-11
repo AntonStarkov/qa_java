@@ -13,15 +13,13 @@ public class Feline extends Animal implements Predator {
     public String getFamily() {
         return "Кошачьи";
     }
+
     public int getKittens() {
         return getKittens(1);
     }
 
-    @Override
-    public List<String> getFood(String predator) throws Exception {
-        return null;
-    }
     public int getKittens(int kittensCount) {
         return kittensCount;
     }
+
 }

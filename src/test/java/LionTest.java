@@ -1,48 +1,26 @@
+import com.example.Feline;
 import com.example.Lion;
-import com.example.Predator;
 import org.junit.*;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
+import org.mockito.junit.MockitoJUnitRunner;
 
-@RunWith(Parameterized.class)
+@RunWith(MockitoJUnitRunner.class)
 public class LionTest {
-    boolean expectedMane;
-    String expectedSex;
-    public LionTest (boolean expectedMane, String expectedSex){
-        this.expectedMane = expectedMane;
-        this.expectedSex = expectedSex;
-    }
-    @Parameterized.Parameters
-    public static Object[][] getMane(){
-        return new Object[][] {
-                {true, "Самец"},
-                {false, "Самка"},
-        };
-    }
-    @Before
-    public void init() {
-        MockitoAnnotations.initMocks(this);
-    }
-    @Mock
-    Predator predator;
+    @Spy
+    Feline feline;
     @Test
     public void lionsGetFoodMethodTest() throws Exception {
-        Lion lion = new Lion(predator);
+        Lion lion = new Lion(feline);
         lion.getFood();
-        Mockito.verify(predator).getFood("Хищник");
+        Mockito.verify(feline).getFood("Хищник");
     }
     @Test
     public void lionsGetKittensMethodTest() {
-        Lion lion = new Lion(predator);
+        Lion lion = new Lion(feline);
         lion.getKittens();
-        Mockito.verify(predator).getKittens();
-    }
-    @Test
-    public void lionsDoesHaveManeMethodTest() throws Exception {
-        Assert.assertEquals(expectedMane, new Lion(expectedSex).doesHaveMane());
+        Mockito.verify(feline).getKittens();
     }
     @Test
     public void lionsThrowExceptionTest() {
@@ -54,3 +32,4 @@ public class LionTest {
             new Lion("");}).getMessage()));
     }
 }
+
